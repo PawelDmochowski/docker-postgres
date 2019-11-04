@@ -17,7 +17,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
       LANG: pl_PL.UTF-8
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
 
   pgadm4:
     image: dpage/pgadmin4:latest
@@ -29,3 +29,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
       - ./servers.json:/pgadmin4/servers.json
+
+volumes:
+    postgres:
