@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 # Required .env variables:
 #
@@ -8,16 +8,19 @@ version: '3.1'
 # PGADMIN_DEFAULT_PASSWORD
 
 services:
-
   db:
-    image: postgres:11-alpine
+    build:
+      context: .
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /var/lib/postgresql/data/pgdata
       LANG: pl_PL.UTF-8
     volumes:
       - postgres:/var/lib/postgresql/data
+      - ./backups:/backups
 
   pgadm4:
     image: dpage/pgadmin4:latest
@@ -28,7 +31,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
-      - ./servers.json:/pgadmin4/servers.json
+      - pgadmin4:/var/lib/pgadmin
+      - ./backups:/backups
 
 volumes:
-    postgres:
+  postgres:
+  pgadmin4:
