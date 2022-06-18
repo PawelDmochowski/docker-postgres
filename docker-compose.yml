@@ -18,6 +18,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /var/lib/postgresql/data/pgdata
       LANG: pl_PL.UTF-8
+      TZ: 'Europe/Warsaw'
+      PGTZ: 'Europe/Warsaw'
     volumes:
       - ./postgres:/var/lib/postgresql/data
       - ./backups:/backups
