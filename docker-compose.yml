@@ -12,6 +12,7 @@ services:
     build:
       context: .
     restart: unless-stopped
+    shm_size: 1G
     ports:
       - "5432:5432"
     environment:
