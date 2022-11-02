@@ -1,5 +1,3 @@
-version: "3.1"
-
 # Required .env variables:
 #
 # POSTGRES_PASSWORD
